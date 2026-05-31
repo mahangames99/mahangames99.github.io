@@ -72,6 +72,51 @@
             --nav-text: #b0b0b0;
         }
 
+        /* ---------- اسکرول‌بار پیشرفته هماهنگ با تم فیروزه‌ای ---------- */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--turquoise-very-light);
+            border-radius: 10px;
+            margin: 2px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--turquoise), var(--turquoise-dark));
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+            box-shadow: inset 0 0 6px rgba(255,255,255,0.3);
+            transition: background 0.3s, border 0.3s;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--turquoise-dark), var(--turquoise));
+            border: 2px solid var(--turquoise-light);
+            background-clip: content-box;
+        }
+        /* Firefox */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--turquoise) var(--turquoise-very-light);
+        }
+
+        body.dark-theme ::-webkit-scrollbar-track {
+            background: #1a2a2d;
+        }
+        body.dark-theme ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00e5ff, #00b8d4);
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+        body.dark-theme ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #00b8d4, #00e5ff);
+            border-color: #004d4d;
+        }
+        body.dark-theme html {
+            scrollbar-color: #00e5ff #1a2a2d;
+        }
+
+        /* سایر استایل‌ها */
         ::selection { background-color: var(--turquoise); color: #000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -148,6 +193,49 @@
         }
         .theme-toggle {
             font-size: 1.3rem;
+        }
+
+        /* استایل افکت کلیک فیروزه‌ای */
+        .btn-click-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-click-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(0, 188, 212, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .btn-click-effect.clicked::after {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+        
+        .btn-click-effect.clicked {
+            background-color: var(--turquoise) !important;
+            color: white !important;
+            border-color: var(--turquoise-dark) !important;
+            transition: background-color 0.1s ease, color 0.1s ease;
+        }
+
+        body.dark-theme .btn-click-effect::after {
+            background: rgba(0, 229, 255, 0.3);
+        }
+        
+        body.dark-theme .btn-click-effect.clicked {
+            background-color: var(--turquoise) !important;
+            color: #000 !important;
+            border-color: var(--turquoise-dark) !important;
         }
 
         .welcome-message {
@@ -320,7 +408,6 @@
         .hero h1 { font-size: 2.8rem; font-weight: 900; color: var(--text-dark); margin-bottom: 8px; }
         .hero h1 .highlight { color: var(--turquoise-dark); }
         .hero .subtitle { font-size: 1.25rem; color: var(--text-light); font-weight: 500; min-height: 2em; }
-        /* حذف استایل‌های مربوط به tagline */
 
         .section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; }
         .section-title { text-align: center; font-size: 2rem; font-weight: 900; color: var(--text-dark); margin-bottom: 40px; }
@@ -346,6 +433,155 @@
         .project-icon { font-size: 3rem; margin-bottom: 12px; }
         .project-card h4 { font-weight: 800; color: var(--turquoise-dark); margin-bottom: 6px; }
         .project-card p { color: var(--text-medium); font-size: 0.9rem; }
+
+        /* استایل‌های بخش دوره‌ها */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 28px 22px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--turquoise-light);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 18px;
+            right: -30px;
+            background: var(--turquoise);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 900;
+            padding: 4px 40px;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+            z-index: 1;
+        }
+        html.lang-en .course-badge {
+            right: auto;
+            left: -30px;
+            transform: rotate(-45deg);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin: 20px 0 14px;
+            transition: transform 0.3s;
+        }
+        .course-card:hover .course-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .course-title {
+            font-weight: 800;
+            color: var(--turquoise-dark);
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #e57373;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .discounted-price {
+            color: #2e7d32;
+            font-weight: 900;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+        }
+        body.dark-theme .original-price { color: #ff8a80; }
+        body.dark-theme .discounted-price { color: #69f0ae; }
+
+        .single-price {
+            color: var(--text-dark);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+        body.dark-theme .single-price { color: #fff; }
+
+        .course-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: auto;
+            background: var(--turquoise);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.25);
+        }
+        .course-btn:hover {
+            background: var(--turquoise-dark);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
+        }
+        body.dark-theme .course-btn {
+            color: #000;
+        }
+
+        /* جزئیات دوره */
+        .course-details {
+            width: 100%;
+            margin-bottom: 18px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--turquoise-light);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+        }
+        .course-detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        .course-detail-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        body.dark-theme .course-details {
+            color: #b0b0b0;
+            border-top-color: #333;
+        }
 
         .timeline { position: relative; padding-right: 30px; max-width: 650px; margin: 0 auto; }
         .timeline::before { content: ''; position: absolute; right: 8px; top: 0; bottom: 0; width: 3px; background: var(--turquoise-light); border-radius: 2px; }
@@ -380,10 +616,34 @@
             color: var(--turquoise);
         }
 
-        .copy-btn { background: var(--turquoise-very-light); border: none; color: var(--turquoise-dark); padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 0.8rem; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 4px; }
+        .copy-btn { 
+            background: var(--turquoise-very-light); 
+            border: none; 
+            color: var(--turquoise-dark); 
+            padding: 5px 10px; 
+            border-radius: 15px; 
+            cursor: pointer; 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            transition: all 0.3s ease; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 4px; 
+            position: relative;
+            overflow: hidden;
+        }
         .copy-btn:hover { background: var(--turquoise); color: white; }
-        .copy-btn.copied { background: #4CAF50; color: white; animation: pop 0.3s; }
-        @keyframes pop { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        .copy-btn.copied { 
+            background: var(--turquoise) !important; 
+            color: white !important; 
+            transform: scale(1.05);
+            transition: background 0.1s ease, color 0.1s ease, transform 0.3s ease;
+        }
+        @keyframes pop { 
+            0% { transform: scale(1); } 
+            50% { transform: scale(1.15); } 
+            100% { transform: scale(1); } 
+        }
 
         .footer { background: var(--footer-bg); color: var(--footer-text); padding: 40px 20px 24px; text-align: center; border-top: 5px solid var(--footer-border); }
         .footer h3 { color: white; font-weight: 900; font-size: 1.3rem; margin-bottom: 20px; }
@@ -433,6 +693,7 @@
             .avatar-circle { width: 110px; height: 110px; font-size: 3rem; }
             .skills-grid { grid-template-columns: 1fr 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
+            .courses-grid { grid-template-columns: 1fr; }
             .footer-links { flex-direction: column; align-items: center; }
             .footer-links li a { width: 100%; justify-content: center; max-width: 280px; }
             .back-to-top { bottom: 25px; right: 25px; width: 44px; height: 44px; }
@@ -449,7 +710,7 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo" data-fa="محمد ماهان عبدلی" data-en="Mahan Abdoli">محمد ماهان عبدلی</div>
-            <button class="hamburger" id="hamburger" aria-label="منوی ناوبری">
+            <button class="hamburger btn-click-effect" id="hamburger" aria-label="منوی ناوبری">
                 <span></span><span></span><span></span>
             </button>
             <nav>
@@ -458,10 +719,11 @@
                     <li><a href="#about" data-fa="درباره من" data-en="About">درباره من</a></li>
                     <li><a href="#skills" data-fa="مهارت‌ها" data-en="Skills">مهارت‌ها</a></li>
                     <li><a href="#projects" data-fa="پروژه‌ها" data-en="Projects">پروژه‌ها</a></li>
+                    <li><a href="#courses" data-fa="دوره‌ها" data-en="Courses">دوره‌ها</a></li>
                     <li><a href="#experience" data-fa="تجربیات" data-en="Experience">تجربیات</a></li>
                     <li><a href="#contact" data-fa="ارتباط" data-en="Contact">ارتباط</a></li>
-                    <li><button class="lang-toggle" id="langToggle">FA</button></li>
-                    <li><button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">🌙</button></li>
+                    <li><button class="lang-toggle btn-click-effect" id="langToggle">FA</button></li>
+                    <li><button class="theme-toggle btn-click-effect" id="themeToggle" aria-label="تغییر تم">🌙</button></li>
                 </ul>
             </nav>
         </div>
@@ -479,7 +741,6 @@
                     <span class="highlight" data-fa="محمد ماهان عبدلی هستم" data-en="Mohammad Mahan Abdoli">محمد ماهان عبدلی</span>
                 </h1>
                 <p class="subtitle" id="typedText" aria-live="polite"></p>
-                <!-- تگ line حذف شد -->
             </div>
         </section>
 
@@ -515,6 +776,113 @@
             </div>
         </section>
 
+        <!-- بخش دوره‌های آموزشی با قابلیت ترجمه قیمت (تومان -> T) و رایگان -> Free -->
+        <section class="section" id="courses">
+            <h2 class="section-title fade-up" data-fa="دوره‌های آموزشی" data-en="Courses">دوره‌های آموزشی</h2>
+            <div class="courses-grid">
+
+                <!-- دوره پایتون -->
+                <div class="course-card fade-up">
+                    <span class="course-badge" data-fa="تخفیف ویژه" data-en="Special Offer">تخفیف ویژه</span>
+                    <div class="course-icon">🐍</div>
+                    <h3 class="course-title" data-fa="آموزش پایتون صفر تا صد" data-en="Python Complete Course">آموزش پایتون صفر تا صد</h3>
+                    <div class="price-container">
+                        <span class="original-price">۱,۵۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                        <span class="discounted-price">۱,۰۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail-item"><span class="course-detail-icon">📚</span> <span data-fa="۲۰ جلسه" data-en="20 Sessions">۲۰ جلسه</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">📅</span> <span data-fa="روزهای فرد" data-en="Odd days">روزهای فرد</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🕒</span> <span data-fa="ساعت ۱۵ تا ۱۶" data-en="15:00 - 16:00">ساعت ۱۵ تا ۱۶</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🎓</span> <span data-fa="پیش‌نیاز: ندارد" data-en="Prerequisite: None">پیش‌نیاز: ندارد</span></div>
+                    </div>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener" class="course-btn btn-click-effect">
+                        📩 <span data-fa="ثبت‌نام در ایتا" data-en="Register via Eitaa">ثبت‌نام در ایتا</span>
+                    </a>
+                </div>
+
+                <!-- دوره SQL -->
+                <div class="course-card fade-up">
+                    <span class="course-badge" data-fa="تخفیف ویژه" data-en="Special Offer">تخفیف ویژه</span>
+                    <div class="course-icon">🗄️</div>
+                    <h3 class="course-title" data-fa="آموزش SQL از مقدماتی تا پیشرفته" data-en="SQL Beginner to Advanced">آموزش SQL از مقدماتی تا پیشرفته</h3>
+                    <div class="price-container">
+                        <span class="original-price">۱,۰۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                        <span class="discounted-price">۹۵۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail-item"><span class="course-detail-icon">📚</span> <span data-fa="۱۵ جلسه" data-en="15 Sessions">۱۵ جلسه</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">📅</span> <span data-fa="روزهای فرد" data-en="Odd days">روزهای فرد</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🕒</span> <span data-fa="ساعت ۱۱ تا ۱۲" data-en="11:00 - 12:00">ساعت ۱۱ تا ۱۲</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🎓</span> <span data-fa="پیش‌نیاز: ندارد" data-en="Prerequisite: None">پیش‌نیاز: ندارد</span></div>
+                    </div>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener" class="course-btn btn-click-effect">
+                        📩 <span data-fa="ثبت‌نام در ایتا" data-en="Register via Eitaa">ثبت‌نام در ایتا</span>
+                    </a>
+                </div>
+
+                <!-- دوره Regex -->
+                <div class="course-card fade-up">
+                    <span class="course-badge" data-fa="تخفیف ویژه" data-en="Special Offer">تخفیف ویژه</span>
+                    <div class="course-icon">🔍</div>
+                    <h3 class="course-title" data-fa="آموزش Regex صفر تا صد" data-en="Regex Complete Course">آموزش Regex صفر تا صد</h3>
+                    <div class="price-container">
+                        <span class="original-price">۷۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                        <span class="discounted-price">۶۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail-item"><span class="course-detail-icon">📚</span> <span data-fa="۱۰ جلسه" data-en="10 Sessions">۱۰ جلسه</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">📅</span> <span data-fa="روزهای زوج" data-en="Even days">روزهای زوج</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🕒</span> <span data-fa="ساعت ۱۱ تا ۱۲" data-en="11:00 - 12:00">ساعت ۱۱ تا ۱۲</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🎓</span> <span data-fa="پیش‌نیاز: ندارد" data-en="Prerequisite: None">پیش‌نیاز: ندارد</span></div>
+                    </div>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener" class="course-btn btn-click-effect">
+                        📩 <span data-fa="ثبت‌نام در ایتا" data-en="Register via Eitaa">ثبت‌نام در ایتا</span>
+                    </a>
+                </div>
+
+                <!-- دوره هوش مصنوعی پیشرفته (با تخفیف) -->
+                <div class="course-card fade-up">
+                    <span class="course-badge" data-fa="تخفیف ویژه" data-en="Special Offer">تخفیف ویژه</span>
+                    <div class="course-icon">🧠</div>
+                    <h3 class="course-title" data-fa="کار با ابزارهای هوش مصنوعی پیشرفته" data-en="Advanced AI Tools">کار با ابزارهای هوش مصنوعی پیشرفته</h3>
+                    <div class="price-container">
+                        <span class="original-price">۸۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                        <span class="discounted-price">۴۰۰,۰۰۰ <span data-fa="تومان" data-en="T">تومان</span></span>
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail-item"><span class="course-detail-icon">📚</span> <span data-fa="۵ جلسه" data-en="5 Sessions">۵ جلسه</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">📅</span> <span data-fa="روزهای زوج" data-en="Even days">روزهای زوج</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🕒</span> <span data-fa="ساعت ۱۶ تا ۱۷" data-en="16:00 - 17:00">ساعت ۱۶ تا ۱۷</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🎓</span> <span data-fa="پیش‌نیاز: کار با ابزارهای هوش مصنوعی مقدماتی" data-en="Prerequisite: Basic AI Tools">پیش‌نیاز: کار با ابزارهای هوش مصنوعی مقدماتی</span></div>
+                    </div>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener" class="course-btn btn-click-effect">
+                        📩 <span data-fa="ثبت‌نام در ایتا" data-en="Register via Eitaa">ثبت‌نام در ایتا</span>
+                    </a>
+                </div>
+
+                <!-- دوره جدید: کار با ابزارهای هوش مصنوعی مقدماتی (رایگان) -->
+                <div class="course-card fade-up">
+                    <span class="course-badge" data-fa="رایگان" data-en="Free">رایگان</span>
+                    <div class="course-icon">🆓</div>
+                    <h3 class="course-title" data-fa="کار با ابزارهای هوش مصنوعی (مقدماتی)" data-en="AI Tools (Beginner)">کار با ابزارهای هوش مصنوعی (مقدماتی)</h3>
+                    <div class="price-container">
+                        <span class="single-price" style="color: #2e7d32; font-weight: 900;"><span data-fa="رایگان" data-en="Free">رایگان</span></span>
+                    </div>
+                    <div class="course-details">
+                        <div class="course-detail-item"><span class="course-detail-icon">📚</span> <span data-fa="۵ جلسه" data-en="5 Sessions">۵ جلسه</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">📅</span> <span data-fa="روزهای فرد" data-en="Odd days">روزهای فرد</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🕒</span> <span data-fa="ساعت ۱۸ تا ۱۹" data-en="18:00 - 19:00">ساعت ۱۸ تا ۱۹</span></div>
+                        <div class="course-detail-item"><span class="course-detail-icon">🎓</span> <span data-fa="پیش‌نیاز: ندارد" data-en="Prerequisite: None">پیش‌نیاز: ندارد</span></div>
+                    </div>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener" class="course-btn btn-click-effect">
+                        📩 <span data-fa="ثبت‌نام در ایتا" data-en="Register via Eitaa">ثبت‌نام در ایتا</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
         <section class="section" id="experience">
             <h2 class="section-title fade-up" data-fa="تجربیات و مسیر من" data-en="My Journey">تجربیات و مسیر من</h2>
             <div class="timeline">
@@ -532,13 +900,13 @@
             <div class="contact-card fade-up">
                 <div class="contact-item"><span class="contact-icon">📧</span><span data-fa="آماده همکاری و پروژه‌های جدید" data-en="Open for collaboration & new projects">آماده همکاری و پروژه‌های جدید</span></div>
                 <div class="contact-item"><span class="contact-icon">🟠</span><span data-fa="ایتا:" data-en="Eitaa:">ایتا:</span><a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener noreferrer" class="eitaa-link">Mahan32m</a>
-                    <button class="copy-btn" data-copy="Mahan32m">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                    <button class="copy-btn btn-click-effect" data-copy="Mahan32m">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
                 </div>
                 <div class="contact-item"><span class="contact-icon">🟣</span><span data-fa="روبیکا:" data-en="Rubika:">روبیکا:</span><a href="https://rubika.ir/Mahangames99" target="_blank" rel="noopener noreferrer" class="rubika-link">Mahangames99</a>
-                    <button class="copy-btn" data-copy="Mahangames99">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                    <button class="copy-btn btn-click-effect" data-copy="Mahangames99">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
                 </div>
                 <div class="contact-item"><span class="contact-icon">🔵</span><span data-fa="تلگرام:" data-en="Telegram:">تلگرام:</span><a href="https://t.me/mahanabdoli2011" target="_blank" rel="noopener noreferrer" class="telegram-link">mahanabdoli2011</a>
-                    <button class="copy-btn" data-copy="mahanabdoli2011">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                    <button class="copy-btn btn-click-effect" data-copy="mahanabdoli2011">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
                 </div>
                 <p style="margin-top:12px;color:var(--text-light);" data-fa="برای همکاری، طراحی ربات یا سوالات، در ارتباط باشید." data-en="For collaboration, bot design, or any questions, feel free to reach out.">برای همکاری، طراحی ربات یا سوالات، در ارتباط باشید.</p>
             </div>
@@ -549,21 +917,20 @@
         <div class="footer-container">
             <h3 data-fa="همراه من در شبکه‌های اجتماعی" data-en="Follow me on social media">همراه من در شبکه‌های اجتماعی</h3>
             <ul class="footer-links">
-                <li><a href="https://www.aparat.com/Mahangames99" target="_blank" rel="noopener noreferrer"><span class="icon-emoji">🟨</span> <span data-fa="کانال آپارات" data-en="Aparat Channel">کانال آپارات</span></a></li>
-                <li><a href="https://www.youtube.com/@mahanabdoli3705" target="_blank" rel="noopener noreferrer"><span class="icon-emoji">🟥</span> <span data-fa="کانال یوتیوب" data-en="YouTube Channel">کانال یوتیوب</span></a></li>
-                <li><a href="https://rubika.ir/kskwmowk" target="_blank" rel="noopener noreferrer"><span class="icon-emoji">🟪</span> <span data-fa="کانال روبیکا" data-en="Rubika Channel">کانال روبیکا</span></a></li>
+                <li><a href="https://www.aparat.com/Mahangames99" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟨</span> <span data-fa="کانال آپارات" data-en="Aparat Channel">کانال آپارات</span></a></li>
+                <li><a href="https://www.youtube.com/@mahanabdoli3705" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟥</span> <span data-fa="کانال یوتیوب" data-en="YouTube Channel">کانال یوتیوب</span></a></li>
+                <li><a href="https://rubika.ir/kskwmowk" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟪</span> <span data-fa="کانال روبیکا" data-en="Rubika Channel">کانال روبیکا</span></a></li>
             </ul>
         </div>
         <div class="footer-bottom" data-fa="سایت محمد ماهان عبدلی Ⓜ1405" data-en="Mohammad Mahan Abdoli's website M1405">سایت محمد ماهان عبدلی Ⓜ1405</div>
     </footer>
 
-    <button class="back-to-top" id="backToTop" aria-label="بازگشت به بالا">
+    <button class="back-to-top btn-click-effect" id="backToTop" aria-label="بازگشت به بالا">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
 
     <script>
         (function() {
-            // DOM element references
             const htmlRoot = document.getElementById('htmlRoot');
             const body = document.body;
             const welcome = document.getElementById('welcomeMessage');
@@ -575,90 +942,70 @@
             const langToggle = document.getElementById('langToggle');
             const typedText = document.getElementById('typedText');
             
-            // ========== SOUND EFFECTS (با رعایت امنیت و تجربه کاربری) ==========
-            let audioContext = null;
-            let soundEnabled = false;
+            // افکت کلیک فیروزه‌ای با مدت 0.5 ثانیه
+            function addClickEffect(button) {
+                button.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    this.classList.add('clicked');
+                    setTimeout(() => this.classList.remove('clicked'), 500);
+                    this.click();
+                });
+                button.addEventListener('mousedown', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => this.classList.remove('clicked'), 500);
+                });
+            }
+            document.querySelectorAll('.btn-click-effect').forEach(button => addClickEffect(button));
             
-            // تابع راه‌اندازی صدا با تعامل کاربر
+            // صدا
+            let audioContext = null, soundEnabled = false;
             function initAudio() {
                 if (audioContext !== null) return;
                 try {
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    // یک صدای خیلی کوتاه و بی‌صدا برای فعال کردن AudioContext
                     const silentBuffer = audioContext.createBuffer(1, 1, 22050);
                     const source = audioContext.createBufferSource();
                     source.buffer = silentBuffer;
                     source.connect(audioContext.destination);
                     source.start();
                     soundEnabled = true;
-                } catch(e) {
-                    console.warn('Web Audio API not supported:', e);
-                    soundEnabled = false;
-                }
+                } catch(e) {}
             }
-            
-            // تابع پخش صدای حباب (با حجم کم)
             function playBubbleSound() {
                 if (!soundEnabled || !audioContext) return;
-                
                 try {
-                    // بررسی وضعیت AudioContext
-                    if (audioContext.state === 'suspended') {
-                        audioContext.resume().then(() => {
-                            playBubbleSoundInternal();
-                        }).catch(() => {});
-                    } else {
-                        playBubbleSoundInternal();
-                    }
-                } catch(e) {
-                    // خطا را نادیده می‌گیریم - صدا قابلیت اضافی است
-                }
+                    if (audioContext.state === 'suspended') audioContext.resume().then(playBubbleSoundInternal);
+                    else playBubbleSoundInternal();
+                } catch(e) {}
             }
-            
             function playBubbleSoundInternal() {
                 try {
                     const now = audioContext.currentTime;
                     const osc = audioContext.createOscillator();
                     const gain = audioContext.createGain();
-                    
                     osc.type = 'sine';
                     osc.frequency.setValueAtTime(620, now);
                     osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
-                    
-                    gain.gain.setValueAtTime(0.12, now);  // حجم کم (نسبت به 0.3 قبلی کمتر)
+                    gain.gain.setValueAtTime(0.25, now);
                     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-                    
                     osc.connect(gain);
                     gain.connect(audioContext.destination);
-                    
                     osc.start();
                     osc.stop(now + 0.25);
-                } catch(e) {
-                    // خطا را نادیده می‌گیریم
-                }
+                } catch(e) {}
             }
-            
-            // فعال کردن صدا با اولین کلیک کاربر روی صفحه (طبق استانداردهای مرورگر)
             function enableSoundOnFirstInteraction() {
                 if (soundEnabled) return;
                 initAudio();
-                // حذف event listener بعد از فعال شدن
                 document.removeEventListener('click', enableSoundOnFirstInteraction);
                 document.removeEventListener('touchstart', enableSoundOnFirstInteraction);
                 document.removeEventListener('keydown', enableSoundOnFirstInteraction);
             }
-            
-            // ثبت event listener برای فعال کردن صدا با تعامل کاربر
             document.addEventListener('click', enableSoundOnFirstInteraction);
             document.addEventListener('touchstart', enableSoundOnFirstInteraction);
             document.addEventListener('keydown', enableSoundOnFirstInteraction);
             
-            // ========== پایان بخش صدا ==========
-            
-            // Valid languages for security
             const VALID_LANGS = ['fa', 'en'];
-            
-            // Welcome message with timeout cleanup
             let welcomeTimeout;
             window.addEventListener('load', () => {
                 welcomeTimeout = setTimeout(() => welcome.classList.add('show'), 300);
@@ -667,17 +1014,12 @@
                     welcome.classList.remove('show');
                 }, 4000);
             });
-
-            // Cleanup function for potential memory leaks
             window.addEventListener('beforeunload', () => {
                 if (welcomeTimeout) clearTimeout(welcomeTimeout);
-                // بستن AudioContext برای آزادسازی منابع
-                if (audioContext) {
-                    audioContext.close().catch(() => {});
-                }
+                if (audioContext) audioContext.close().catch(() => {});
             });
 
-            // Hamburger menu functionality
+            // منو
             let isMenuOpen = false;
             function toggleMenu() {
                 isMenuOpen = navLinks.classList.toggle('active');
@@ -685,7 +1027,6 @@
                 overlay.classList.toggle('active');
                 body.style.overflow = isMenuOpen ? 'hidden' : '';
             }
-            
             function closeMenu() {
                 isMenuOpen = false;
                 hamburger.classList.remove('active');
@@ -693,47 +1034,31 @@
                 overlay.classList.remove('active');
                 body.style.overflow = '';
             }
-            
             if (hamburger) hamburger.addEventListener('click', toggleMenu);
             if (overlay) overlay.addEventListener('click', closeMenu);
 
-            // Navigation active state
+            // اسکرول و فعال بودن لینک
             let manualScroll = false;
             const allNavLinks = document.querySelectorAll('.nav-links a:not(.lang-toggle):not(.theme-toggle)');
             const sections = document.querySelectorAll('section[id]');
-            
             function updateActiveOnScroll() {
                 if (manualScroll) return;
                 const viewportHeight = window.innerHeight;
                 const scrollPosition = window.scrollY;
-                let maxOverlap = 0;
-                let activeSectionId = 'home';
-                
+                let maxOverlap = 0, activeSectionId = 'home';
                 sections.forEach(section => {
                     const rect = section.getBoundingClientRect();
                     const visible = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0));
                     const ratio = rect.height > 0 ? visible / rect.height : 0;
-                    if (ratio > maxOverlap) {
-                        maxOverlap = ratio;
-                        activeSectionId = section.id;
-                    }
+                    if (ratio > maxOverlap) { maxOverlap = ratio; activeSectionId = section.id; }
                 });
-                
                 if (scrollPosition < 200) activeSectionId = 'home';
-                
                 allNavLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + activeSectionId) {
-                        link.classList.add('active');
-                    }
+                    if (link.getAttribute('href') === '#' + activeSectionId) link.classList.add('active');
                 });
-                
-                if (backToTopBtn) {
-                    backToTopBtn.classList.toggle('show', scrollPosition > 400);
-                }
+                if (backToTopBtn) backToTopBtn.classList.toggle('show', scrollPosition > 400);
             }
-            
-            // Handle manual navigation clicks
             allNavLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     closeMenu();
@@ -741,27 +1066,16 @@
                     this.classList.add('active');
                     manualScroll = true;
                     if (window.scrollTimeout) clearTimeout(window.scrollTimeout);
-                    window.scrollTimeout = setTimeout(() => {
-                        manualScroll = false;
-                        updateActiveOnScroll();
-                    }, 1200);
+                    window.scrollTimeout = setTimeout(() => { manualScroll = false; updateActiveOnScroll(); }, 1200);
                 });
             });
-            
             window.addEventListener('scroll', updateActiveOnScroll);
             updateActiveOnScroll();
 
-            // Back to top functionality با صدای حباب
-            if (backToTopBtn) {
-                backToTopBtn.addEventListener('click', () => {
-                    playBubbleSound();  // پخش صدای حباب هنگام کلیک
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
+            if (backToTopBtn) backToTopBtn.addEventListener('click', () => { playBubbleSound(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-            // Copy functionality with sanitization
-            const copyButtons = document.querySelectorAll('.copy-btn');
-            copyButtons.forEach(btn => {
+            // کپی
+            document.querySelectorAll('.copy-btn').forEach(btn => {
                 btn.addEventListener('click', async () => {
                     const textToCopy = btn.getAttribute('data-copy');
                     if (textToCopy && typeof textToCopy === 'string') {
@@ -778,20 +1092,14 @@
                                     btn.innerHTML = `📋 <span class="copy-text" data-fa="کپی" data-en="Copy">${currentLang === 'en' ? 'Copy' : 'کپی'}</span>`;
                                 }, 2000);
                             }
-                        } catch (err) {
-                            console.warn('Clipboard write failed:', err);
-                        }
+                        } catch (err) {}
                     }
                 });
             });
 
-            // Theme toggling with validation
+            // تم
             const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                body.classList.add('dark-theme');
-                if (themeToggle) themeToggle.innerHTML = '☀️';
-            }
-            
+            if (savedTheme === 'dark') { body.classList.add('dark-theme'); if (themeToggle) themeToggle.innerHTML = '☀️'; }
             if (themeToggle) {
                 themeToggle.addEventListener('click', () => {
                     const isDark = body.classList.toggle('dark-theme');
@@ -800,96 +1108,49 @@
                 });
             }
 
-            // Typing animation with cleanup
+            // تایپ
             let typingTimer;
             let phrases = ['برنامه‌نویس و توسعه‌دهنده بات تلگرام', 'علاقه‌مند به هوش مصنوعی', 'مدرس اسکرچ و وردپرس'];
             let phrasesEn = ['Python Developer & Telegram Bot Creator', 'AI Enthusiast', 'Scratch & WordPress Instructor'];
             let pi = 0, ci = 0, del = false;
-            
             function type() {
                 if (typingTimer) clearTimeout(typingTimer);
                 const currentPhrases = htmlRoot.getAttribute('lang') === 'en' ? phrasesEn : phrases;
                 const currentText = currentPhrases[pi] || '';
                 if (typedText) typedText.textContent = currentText.substring(0, ci);
-                
-                if (!del && ci < currentText.length) {
-                    ci++;
-                    typingTimer = setTimeout(type, 100);
-                } else if (del && ci > 0) {
-                    ci--;
-                    typingTimer = setTimeout(type, 50);
-                } else if (!del && ci === currentText.length) {
-                    del = true;
-                    typingTimer = setTimeout(type, 1500);
-                } else if (del && ci === 0) {
-                    del = false;
-                    pi = (pi + 1) % currentPhrases.length;
-                    typingTimer = setTimeout(type, 300);
-                }
+                if (!del && ci < currentText.length) { ci++; typingTimer = setTimeout(type, 100); }
+                else if (del && ci > 0) { ci--; typingTimer = setTimeout(type, 50); }
+                else if (!del && ci === currentText.length) { del = true; typingTimer = setTimeout(type, 1500); }
+                else if (del && ci === 0) { del = false; pi = (pi + 1) % currentPhrases.length; typingTimer = setTimeout(type, 300); }
             }
-            
             type();
 
-            // Language switching with validation
+            // زبان
             function setLanguage(lang) {
                 if (!VALID_LANGS.includes(lang)) return;
-                
                 htmlRoot.setAttribute('lang', lang);
                 htmlRoot.classList.toggle('lang-en', lang === 'en');
-                if (lang === 'en') {
-                    htmlRoot.setAttribute('dir', 'ltr');
-                    if (langToggle) langToggle.innerHTML = 'EN';
-                } else {
-                    htmlRoot.setAttribute('dir', 'rtl');
-                    if (langToggle) langToggle.innerHTML = 'FA';
-                }
-                
+                if (lang === 'en') { htmlRoot.setAttribute('dir', 'ltr'); if (langToggle) langToggle.innerHTML = 'EN'; }
+                else { htmlRoot.setAttribute('dir', 'rtl'); if (langToggle) langToggle.innerHTML = 'FA'; }
                 document.querySelectorAll('[data-fa][data-en]').forEach(el => {
                     if (el.closest('.copy-btn')) return;
                     const newText = lang === 'fa' ? el.getAttribute('data-fa') : el.getAttribute('data-en');
                     if (newText) el.textContent = newText;
                 });
-                
-                document.querySelectorAll('.copy-btn .copy-text').forEach(span => {
-                    span.textContent = lang === 'fa' ? 'کپی' : 'Copy';
-                });
-                
+                document.querySelectorAll('.copy-btn .copy-text').forEach(span => span.textContent = lang === 'fa' ? 'کپی' : 'Copy');
                 document.title = lang === 'fa' ? 'رزومه محمد ماهان عبدلی' : 'Resume - Mohammad Mahan Abdoli';
-                
-                if (typingTimer) clearTimeout(typingTimer);
-                ci = 0;
-                pi = 0;
-                del = false;
-                type();
-                
+                if (typingTimer) clearTimeout(typingTimer); ci = 0; pi = 0; del = false; type();
                 localStorage.setItem('lang', lang);
             }
-            
             const savedLang = localStorage.getItem('lang');
-            if (savedLang && VALID_LANGS.includes(savedLang)) {
-                setLanguage(savedLang);
-            } else {
-                setLanguage('fa');
-            }
-            
-            if (langToggle) {
-                langToggle.addEventListener('click', () => {
-                    const currentLang = htmlRoot.getAttribute('lang');
-                    const newLang = currentLang === 'fa' ? 'en' : 'fa';
-                    setLanguage(newLang);
-                });
-            }
+            if (savedLang && VALID_LANGS.includes(savedLang)) setLanguage(savedLang);
+            else setLanguage('fa');
+            if (langToggle) langToggle.addEventListener('click', () => setLanguage(htmlRoot.getAttribute('lang') === 'fa' ? 'en' : 'fa'));
 
-            // Intersection Observer for fade-up animations
+            // انیمیشن
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
+                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
             }, { threshold: 0.1 });
-            
             document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
         })();
     </script>
