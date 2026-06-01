@@ -1347,13 +1347,24 @@
             const canvas = document.getElementById('heroCanvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
-            const PARTICLE_COUNT = 70;
             const CONNECTION_DIST = 120;
+
+            function getParticleCount() {
+                return window.innerWidth < 768 ? 40 : 70;
+            }
+            let PARTICLE_COUNT = getParticleCount();
 
             function resizeCanvas() {
                 const hero = canvas.parentElement;
                 canvas.width = hero.offsetWidth;
                 canvas.height = hero.offsetHeight;
+                // بعد از تغییر اندازه، ذرات خارج از محدوده را به داخل هدایت کن
+                particles.forEach(p => {
+                    if (p.x > canvas.width) p.x = canvas.width;
+                    if (p.x < 0) p.x = 0;
+                    if (p.y > canvas.height) p.y = canvas.height;
+                    if (p.y < 0) p.y = 0;
+                });
             }
 
             class Particle {
@@ -1370,8 +1381,11 @@
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                    // حرکت نرم با عبور از لبه‌ها (wrap)
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
                 }
                 draw(ctx, color) {
                     ctx.beginPath();
@@ -1382,10 +1396,17 @@
             }
 
             function initParticles() {
+                PARTICLE_COUNT = getParticleCount();
                 particles = [];
                 for (let i = 0; i < PARTICLE_COUNT; i++) {
                     particles.push(new Particle());
                 }
+            }
+
+            function adjustParticleCount() {
+                const target = getParticleCount();
+                while (particles.length < target) particles.push(new Particle());
+                while (particles.length > target) particles.pop();
             }
 
             function getParticleColor() {
@@ -1424,7 +1445,7 @@
 
             window.addEventListener('resize', () => {
                 resizeCanvas();
-                initParticles();
+                adjustParticleCount();
             });
 
             resizeCanvas();
