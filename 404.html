@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-fa="صفحه پیدا نشد – ۴۰۴" data-en="Page not found – 404">404</title>
+    <meta name="description" content="صفحه مورد نظر شما پیدا نشد.">
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --turquoise: #00BCD4;
+            --turquoise-dark: #0097A7;
+            --turquoise-light: #B2EBF2;
+            --turquoise-very-light: #E0F7FA;
+            --white: #FFFFFF;
+            --text-dark: #263238;
+            --text-medium: #455A64;
+            --text-light: #607D8B;
+            --bg-body: #F8FDFE;
+            --card-bg: #FFFFFF;
+            --card-border: #E0F7FA;
+            --shadow: 0 4px 20px rgba(0, 188, 212, 0.15);
+            --shadow-hover: 0 12px 40px rgba(0, 188, 212, 0.3);
+        }
+        body.dark-theme {
+            --bg-body: #121212;
+            --card-bg: #1e1e1e;
+            --card-border: #333333;
+            --white: #1e1e1e;
+            --text-dark: #e0e0e0;
+            --text-medium: #b0b0b0;
+            --text-light: #909090;
+            --turquoise: #00e5ff;
+            --turquoise-dark: #00b8d4;
+            --turquoise-light: #004d4d;
+            --turquoise-very-light: #003333;
+            --shadow: 0 4px 20px rgba(0, 229, 255, 0.1);
+            --shadow-hover: 0 12px 40px rgba(0, 229, 255, 0.25);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { height: 100%; }
+        body {
+            font-family: 'Vazirmatn', 'Tahoma', 'Segoe UI', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            transition: background-color 0.4s, color 0.4s;
+            direction: rtl;
+            padding: 20px;
+        }
+        html[lang="en"] body { direction: ltr; }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .error-code {
+            font-size: clamp(6rem, 20vw, 12rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--turquoise), var(--turquoise-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .message {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-medium);
+            margin-bottom: 30px;
+            min-height: 2.4rem;
+        }
+        .home-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--turquoise);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        .home-btn:hover {
+            background: var(--turquoise-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.45);
+        }
+        body.dark-theme .home-btn {
+            color: #000;
+        }
+        .toggle-group {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+        html[lang="en"] .toggle-group {
+            right: auto;
+            left: 20px;
+        }
+        .theme-toggle,
+        .lang-toggle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--turquoise);
+            background: var(--card-bg);
+            color: var(--turquoise-dark);
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+        .theme-toggle:hover,
+        .lang-toggle:hover {
+            background: var(--turquoise);
+            color: white;
+            border-color: var(--turquoise-dark);
+            transform: scale(1.05);
+        }
+        body.dark-theme .theme-toggle:hover,
+        body.dark-theme .lang-toggle:hover {
+            color: #000;
+        }
+        @media (max-width: 480px) {
+            .toggle-group { top: 10px; right: 10px; }
+            html[lang="en"] .toggle-group { left: 10px; right: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-group">
+        <button class="theme-toggle" id="themeToggle" aria-label="تغییر تم">🌙</button>
+        <button class="lang-toggle" id="langToggle">FA</button>
+    </div>
+    <div class="container">
+        <div class="error-code">404</div>
+        <p class="message" id="msg" data-fa="متأسفانه صفحه‌ای که دنبالش هستید پیدا نشد." data-en="Sorry, the page you are looking for could not be found."></p>
+        <!-- اصلاح لینک به ریشه سایت -->
+        <a href="/" class="home-btn" data-fa="بازگشت به صفحه اصلی" data-en="Back to Homepage">بازگشت به صفحه اصلی</a>
+    </div>
+
+    <script>
+        (function() {
+            const htmlRoot = document.getElementById('htmlRoot');
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
+            const msg = document.getElementById('msg');
+
+            // تم
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+                if (themeToggle) themeToggle.innerHTML = '☀️';
+            }
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const isDark = body.classList.toggle('dark-theme');
+                    themeToggle.innerHTML = isDark ? '☀️' : '🌙';
+                    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                });
+            }
+
+            // زبان
+            const VALID_LANGS = ['fa', 'en'];
+            function setLanguage(lang) {
+                if (!VALID_LANGS.includes(lang)) return;
+                htmlRoot.setAttribute('lang', lang);
+                htmlRoot.classList.toggle('lang-en', lang === 'en');
+                if (lang === 'en') {
+                    htmlRoot.setAttribute('dir', 'ltr');
+                    if (langToggle) langToggle.innerHTML = 'EN';
+                } else {
+                    htmlRoot.setAttribute('dir', 'rtl');
+                    if (langToggle) langToggle.innerHTML = 'FA';
+                }
+                document.querySelectorAll('[data-fa][data-en]').forEach(el => {
+                    const text = lang === 'fa' ? el.getAttribute('data-fa') : el.getAttribute('data-en');
+                    if (text) el.textContent = text;
+                });
+                document.title = lang === 'fa' ? 'صفحه پیدا نشد – ۴۰۴' : 'Page not found – 404';
+                localStorage.setItem('lang', lang);
+            }
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang && VALID_LANGS.includes(savedLang)) setLanguage(savedLang);
+            else setLanguage('fa');
+            if (langToggle) {
+                langToggle.addEventListener('click', () => setLanguage(htmlRoot.getAttribute('lang') === 'fa' ? 'en' : 'fa'));
+            }
+
+            // اعمال اولیه متن
+            setLanguage(htmlRoot.getAttribute('lang') || 'fa');
+        })();
+    </script>
+</body>
+</html>
