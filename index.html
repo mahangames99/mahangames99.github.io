@@ -348,7 +348,6 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* ==================== بخش قهرمان با پس‌زمینه ذرات ==================== */
         .hero {
             position: relative;
             background: linear-gradient(135deg, #E0F7FA 0%, #FFFFFF 40%, #B2EBF2 100%);
@@ -361,7 +360,6 @@
             background: linear-gradient(135deg, #0a2a2a 0%, #121212 40%, #0a3030 100%);
         }
 
-        /* کانواس ذرات */
         #heroCanvas {
             position: absolute;
             top: 0;
@@ -380,7 +378,6 @@
             margin: 0 auto;
         }
 
-        /* آواتار نئومورفیسم (بدون تغییر) */
         .avatar-circle {
             width: 150px;
             height: 150px;
@@ -1245,11 +1242,11 @@
         <section class="section" id="projects">
             <h2 class="section-title fade-up" data-fa="پروژه‌های من" data-en="My Projects">پروژه‌های من</h2>
             <div class="projects-grid">
-                <a href="https://github.com/mahangames99/calculator_with_python" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+                <a href="https://github.com/mahangames99/calculator_with_python/releases/latest/download/calculator.exe" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
                     <div class="project-icon">🧮</div>
                     <h4 data-fa="ماشین حساب پیشرفته" data-en="Advanced Calculator">ماشین حساب پیشرفته</h4>
-                    <p data-fa="ساخته شده با پایتون – عملیات ریاضی پیچیده" data-en="Built with Python – complex math operations">ساخته شده با پایتون – عملیات ریاضی پیچیده</p>
-                    <span class="project-click-hint" data-fa="برای مشاهده کلیک کنید" data-en="Click to view">برای مشاهده کلیک کنید</span>
+                    <p data-fa="ساخته شده با پایتون – کلیک کنید تا فایل EXE دانلود شود" data-en="Built with Python – Click to download EXE file">ساخته شده با پایتون – کلیک کنید تا فایل EXE دانلود شود</p>
+                    <span class="project-click-hint" data-fa="📥 کلیک کنید تا دانلود شود" data-en="📥 Click to download">📥 کلیک کنید تا دانلود شود</span>
                 </a>
                 <a href="https://t.me/RamzMahanbot" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
                     <div class="project-icon">🔐</div>
@@ -1257,11 +1254,11 @@
                     <p data-fa="مدیریت رمز عبور در تلگرام" data-en="Password management via Telegram">مدیریت رمز عبور در تلگرام</p>
                     <span class="project-click-hint" data-fa="برای مشاهده کلیک کنید" data-en="Click to view">برای مشاهده کلیک کنید</span>
                 </a>
-                <a href="https://github.com/mahangames99/galaxy_shooter-arena" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
+                <a href="https://github.com/mahangames99/galaxy_shooter-arena/releases/latest/download/game.html" target="_blank" rel="noopener noreferrer" class="project-card fade-up">
                     <div class="project-icon">🚀</div>
                     <h4 data-fa="بازی شلیک کهکشانی" data-en="Galactic Shooter Game">بازی شلیک کهکشانی</h4>
-                    <p data-fa="ساخته شده با JS , HTML , CSS" data-en="Built with CSS, HTML, JS">بازی آرکید با پایتون یا اسکرچ</p>
-                    <span class="project-click-hint" data-fa="برای مشاهده کلیک کنید" data-en="Click to view">برای مشاهده کلیک کنید</span>
+                    <p data-fa="ساخته شده با JS , HTML , CSS – کلیک کنید تا فایل بازی دانلود شود" data-en="Built with CSS, HTML, JS – Click to download game file">ساخته شده با JS , HTML , CSS – کلیک کنید تا فایل بازی دانلود شود</p>
+                    <span class="project-click-hint" data-fa="📥 کلیک کنید تا دانلود شود" data-en="📥 Click to download">📥 کلیک کنید تا دانلود شود</span>
                 </a>
             </div>
         </section>
@@ -1342,7 +1339,6 @@
             const langToggle = document.getElementById('langToggle');
             const typedText = document.getElementById('typedText');
 
-            // ==================== شبکه ذرات پس‌زمینه ====================
             const canvas = document.getElementById('heroCanvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -1357,7 +1353,6 @@
                 const hero = canvas.parentElement;
                 canvas.width = hero.offsetWidth;
                 canvas.height = hero.offsetHeight;
-                // بعد از تغییر اندازه، ذرات خارج از محدوده را به داخل هدایت کن
                 particles.forEach(p => {
                     if (p.x > canvas.width) p.x = canvas.width;
                     if (p.x < 0) p.x = 0;
@@ -1380,7 +1375,6 @@
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    // حرکت نرم با عبور از لبه‌ها (wrap)
                     if (this.x < 0) this.x = canvas.width;
                     if (this.x > canvas.width) this.x = 0;
                     if (this.y < 0) this.y = canvas.height;
@@ -1451,7 +1445,6 @@
             initParticles();
             animateParticles();
 
-            // ==================== سایر عملکردها ====================
             function addClickEffect(button) {
                 button.addEventListener('touchstart', function(e) {
                     e.preventDefault();
