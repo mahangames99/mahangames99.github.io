@@ -890,6 +890,16 @@
         }
         .contact-icon {
             font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-icon img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
         }
 
         .eitaa-link,
@@ -980,12 +990,190 @@
             font-size: 1.2rem;
             display: inline-block;
         }
+        .footer-links li a img.social-icon-img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            vertical-align: middle;
+        }
         .footer-bottom {
             margin-top: 20px;
             font-size: 0.85rem;
             color: #78909c;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 16px;
+        }
+
+        /* Improved Share Section Styles */
+        .share-section {
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .share-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 48px 32px;
+            box-shadow: 0 20px 50px rgba(0, 188, 212, 0.18);
+            border: 1px solid rgba(0, 188, 212, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .share-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--turquoise), var(--turquoise-dark), var(--turquoise));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+        .share-card:hover::before {
+            transform: scaleX(1);
+        }
+        .share-card:hover {
+            box-shadow: 0 30px 60px rgba(0, 188, 212, 0.25);
+            border-color: var(--turquoise-light);
+            transform: translateY(-5px);
+        }
+        body.dark-theme .share-card {
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(0, 229, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 229, 255, 0.1);
+        }
+        body.dark-theme .share-card:hover {
+            box-shadow: 0 30px 60px rgba(0, 229, 255, 0.2);
+            border-color: rgba(0, 229, 255, 0.4);
+        }
+        .share-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+        .share-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--turquoise);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        .share-description {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        .share-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--turquoise);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.35);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+            backdrop-filter: blur(10px);
+            min-width: 160px;
+            letter-spacing: 0.5px;
+        }
+        .share-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease;
+        }
+        .share-btn:hover {
+            background: var(--turquoise-dark);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 14px 30px rgba(0, 188, 212, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .share-btn:hover::after {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+        .share-btn:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+        body.dark-theme .share-btn {
+            background: #00b8d4;
+            color: #000;
+            box-shadow: 0 8px 25px rgba(0, 229, 255, 0.3);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+        body.dark-theme .share-btn:hover {
+            background: #00e5ff;
+            box-shadow: 0 14px 30px rgba(0, 229, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .share-btn-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .share-btn:hover .share-btn-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .share-btn-text {
+            font-size: 1.05rem;
+        }
+        .copied-tooltip {
+            display: block;
+            margin-top: 20px;
+            color: var(--turquoise-dark);
+            font-weight: 700;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .copied-tooltip.show {
+            opacity: 1;
+            transform: translateY(0);
+            animation: pulse 0.5s ease;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
         .back-to-top {
@@ -1168,6 +1356,17 @@
                 padding: 12px 20px;
                 font-size: 0.95rem;
             }
+            .share-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .share-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -1193,6 +1392,7 @@
                     <li><a href="#experience" data-fa="تجربیات" data-en="Experience">تجربیات</a></li>
                     <li><a href="#faq" data-fa="سوالات متداول" data-en="FAQ">سوالات متداول</a></li>
                     <li><a href="#contact" data-fa="ارتباط" data-en="Contact">ارتباط</a></li>
+                    <li><a href="#share" data-fa="اشتراک‌گذاری" data-en="Share">اشتراک‌گذاری</a></li>
                     <li><button class="lang-toggle btn-click-effect" id="langToggle">FA</button></li>
                     <li><button class="theme-toggle btn-click-effect" id="themeToggle" aria-label="تغییر تم">🌙</button></li>
                 </ul>
@@ -1302,10 +1502,52 @@
             <h2 class="section-title fade-up" data-fa="ارتباط با من" data-en="Contact Me">ارتباط با من</h2>
             <div class="contact-card fade-up">
                 <div class="contact-item"><span class="contact-icon">📧</span><span data-fa="آماده همکاری و پروژه‌های جدید" data-en="Open for collaboration & new projects">آماده همکاری و پروژه‌های جدید</span></div>
-                <div class="contact-item"><span class="contact-icon">🟠</span><span data-fa="ایتا:" data-en="Eitaa:">ایتا:</span><a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener noreferrer" class="eitaa-link">Mahan32m</a><button class="copy-btn btn-click-effect" data-copy="Mahan32m">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button></div>
-                <div class="contact-item"><span class="contact-icon">🟣</span><span data-fa="روبیکا:" data-en="Rubika:">روبیکا:</span><a href="https://rubika.ir/Mahangames99" target="_blank" rel="noopener noreferrer" class="rubika-link">Mahangames99</a><button class="copy-btn btn-click-effect" data-copy="Mahangames99">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button></div>
-                <div class="contact-item"><span class="contact-icon">🔵</span><span data-fa="تلگرام:" data-en="Telegram:">تلگرام:</span><a href="https://t.me/mahanabdoli2011" target="_blank" rel="noopener noreferrer" class="telegram-link">mahanabdoli2011</a><button class="copy-btn btn-click-effect" data-copy="mahanabdoli2011">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button></div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <img src="eitaa.png" alt="Eitaa" style="width:24px; height:24px; border-radius:50%; object-fit:cover;">
+                    </span>
+                    <span data-fa="ایتا:" data-en="Eitaa:">ایتا:</span>
+                    <a href="https://eitaa.com/Mahan32m" target="_blank" rel="noopener noreferrer" class="eitaa-link">Mahan32m</a>
+                    <button class="copy-btn btn-click-effect" data-copy="Mahan32m">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <img src="rubika.png" alt="Rubika" style="width:24px; height:24px; border-radius:50%; object-fit:cover;">
+                    </span>
+                    <span data-fa="روبیکا:" data-en="Rubika:">روبیکا:</span>
+                    <a href="https://rubika.ir/Mahangames99" target="_blank" rel="noopener noreferrer" class="rubika-link">Mahangames99</a>
+                    <button class="copy-btn btn-click-effect" data-copy="Mahangames99">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">
+                        <img src="telegram.png" alt="Telegram" style="width:24px; height:24px; border-radius:50%; object-fit:cover;">
+                    </span>
+                    <span data-fa="تلگرام:" data-en="Telegram:">تلگرام:</span>
+                    <a href="https://t.me/mahanabdoli2011" target="_blank" rel="noopener noreferrer" class="telegram-link">mahanabdoli2011</a>
+                    <button class="copy-btn btn-click-effect" data-copy="mahanabdoli2011">📋 <span class="copy-text" data-fa="کپی" data-en="Copy">کپی</span></button>
+                </div>
                 <p style="margin-top:12px;color:var(--text-light);" data-fa="برای همکاری، طراحی ربات یا سوالات، در ارتباط باشید." data-en="For collaboration, bot design, or any questions, feel free to reach out.">برای همکاری، طراحی ربات یا سوالات، در ارتباط باشید.</p>
+            </div>
+        </section>
+
+        <!-- Improved Share Section right below Contact -->
+        <section class="section share-section" id="share">
+            <h2 class="section-title fade-up" data-fa="این سایت را به اشتراک بگذارید" data-en="Share This Site">این سایت را به اشتراک بگذارید</h2>
+            <div class="share-card fade-up">
+                <p class="share-description" data-fa="اگر از این سایت خوشتان آمده، لطفاً با دوستان خود به اشتراک بگذارید." data-en="If you like this site, please share it with your friends.">
+                    اگر از این سایت خوشتان آمده، لطفاً با دوستان خود به اشتراک بگذارید.
+                </p>
+                <div class="share-actions">
+                    <button class="share-btn btn-click-effect" id="nativeShare" title="اشتراک‌گذاری">
+                        <span class="share-btn-icon">📤</span>
+                        <span class="share-btn-text" data-fa="اشتراک‌گذاری" data-en="Share">اشتراک‌گذاری</span>
+                    </button>
+                    <button class="share-btn btn-click-effect" id="copyLink">
+                        <span class="share-btn-icon">🔗</span>
+                        <span class="share-btn-text" data-fa="کپی لینک" data-en="Copy Link">کپی لینک</span>
+                    </button>
+                </div>
+                <span id="copyTooltip" class="copied-tooltip" data-fa="لینک کپی شد!" data-en="Link copied!">لینک کپی شد!</span>
             </div>
         </section>
     </main>
@@ -1314,13 +1556,33 @@
         <div class="footer-container">
             <h3 data-fa="همراه من در شبکه‌های اجتماعی" data-en="Follow me on social media">همراه من در شبکه‌های اجتماعی</h3>
             <ul class="footer-links">
-                <li><a href="https://www.aparat.com/Mahangames99" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟨</span> <span data-fa="کانال آپارات" data-en="Aparat Channel">کانال آپارات</span></a></li>
-                <li><a href="https://www.youtube.com/@mahanabdoli3705" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟥</span> <span data-fa="کانال یوتیوب" data-en="YouTube Channel">کانال یوتیوب</span></a></li>
-                <li><a href="https://rubika.ir/kskwmowk" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">🟪</span> <span data-fa="کانال روبیکا" data-en="Rubika Channel">کانال روبیکا</span></a></li>
-                <li><a href="https://github.com/mahangames99" target="_blank" rel="noopener noreferrer" class="btn-click-effect"><span class="icon-emoji">💻</span> <span data-fa="گیت‌هاب" data-en="GitHub">گیت‌هاب</span></a></li>
+                <li>
+                    <a href="https://www.aparat.com/Mahangames99" target="_blank" rel="noopener noreferrer" class="btn-click-effect">
+                        <img src="aparat-Icon.png" alt="Aparat" class="social-icon-img">
+                        <span data-fa="کانال آپارات" data-en="Aparat Channel">کانال آپارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.youtube.com/@mahanabdoli3705" target="_blank" rel="noopener noreferrer" class="btn-click-effect">
+                        <img src="youtube.png" alt="YouTube" class="social-icon-img">
+                        <span data-fa="کانال یوتیوب" data-en="YouTube Channel">کانال یوتیوب</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://rubika.ir/kskwmowk" target="_blank" rel="noopener noreferrer" class="btn-click-effect">
+                        <img src="rubika.png" alt="Rubika" class="social-icon-img">
+                        <span data-fa="کانال روبیکا" data-en="Rubika Channel">کانال روبیکا</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/mahangames99" target="_blank" rel="noopener noreferrer" class="btn-click-effect">
+                        <img src="github.png" alt="GitHub" class="social-icon-img">
+                        <span data-fa="گیت‌هاب" data-en="GitHub">گیت‌هاب</span>
+                    </a>
+                </li>
             </ul>
         </div>
-        <div class="footer-bottom" data-fa="سایت محمد ماهان عبدلی Ⓜ1405" data-en="Mohammad Mahan Abdoli's website M1405">سایت محمد ماهان عبدلی Ⓜ1405</div>
+        <div class="footer-bottom" data-fa="سایت محمد ماهان عبدلی Ⓜ1405" data-en="Mohammad Mahan Abdoli's website 1405">سایت محمد ماهان عبدلی Ⓜ1405</div>
     </footer>
 
     <button class="back-to-top btn-click-effect" id="backToTop" aria-label="بازگشت به بالا">
@@ -1668,6 +1930,67 @@
                         observer.unobserve(entry.target); } });
             }, { threshold: 0.1 });
             document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        })();
+    </script>
+
+    <script>
+        (function() {
+            const nativeShareBtn = document.getElementById('nativeShare');
+            const copyTooltip = document.getElementById('copyTooltip');
+            const htmlRoot = document.getElementById('htmlRoot');
+
+            function getLang() {
+                return htmlRoot.getAttribute('lang') === 'en' ? 'en' : 'fa';
+            }
+
+            if (nativeShareBtn) {
+                if (navigator.share) {
+                    nativeShareBtn.addEventListener('click', () => {
+                        navigator.share({
+                            title: document.title,
+                            url: window.location.href
+                        }).catch(() => {});
+                    });
+                } else {
+                    // Fallback: copy link and show tooltip
+                    nativeShareBtn.addEventListener('click', () => {
+                        navigator.clipboard.writeText(window.location.href).then(() => {
+                            if (copyTooltip) {
+                                copyTooltip.textContent = getLang() === 'en' ? 'Link copied! (Share not supported)' : 'لینک کپی شد! (اشتراک‌گذاری پشتیبانی نمی‌شود)';
+                                copyTooltip.classList.add('show');
+                                setTimeout(() => copyTooltip.classList.remove('show'), 3000);
+                            }
+                        }).catch(() => {
+                            if (copyTooltip) {
+                                copyTooltip.textContent = getLang() === 'en' ? 'Could not share' : 'امکان اشتراک‌گذاری نیست';
+                                copyTooltip.classList.add('show');
+                                setTimeout(() => copyTooltip.classList.remove('show'), 2000);
+                            }
+                        });
+                    });
+                }
+            }
+
+            const copyLinkBtn = document.getElementById('copyLink');
+            if (copyLinkBtn && copyTooltip) {
+                copyLinkBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        copyTooltip.textContent = getLang() === 'en' ? 'Link copied!' : 'لینک کپی شد!';
+                        copyTooltip.classList.add('show');
+                        setTimeout(() => copyTooltip.classList.remove('show'), 2000);
+                    }).catch(() => {
+                        const textArea = document.createElement('textarea');
+                        textArea.value = window.location.href;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        copyTooltip.textContent = getLang() === 'en' ? 'Link copied!' : 'لینک کپی شد!';
+                        copyTooltip.classList.add('show');
+                        setTimeout(() => copyTooltip.classList.remove('show'), 2000);
+                    });
+                });
+            }
         })();
     </script>
 </body>
